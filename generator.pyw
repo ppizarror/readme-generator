@@ -44,7 +44,7 @@ import traceback
 import winsound
 
 # Constants
-VERSION = '0.4'
+VERSION = '0.5'
 
 
 # noinspection PyUnusedLocal,PyBroadException
@@ -150,7 +150,7 @@ class App(object):
 
         # Label that shows loaded configuration name
         self._mainlabelstr = StringVar()
-        Label(f1, textvariable=self._mainlabelstr).pack(side=LEFT, padx=0)
+        Label(f1, textvariable=self._mainlabelstr, foreground='#666').pack(side=LEFT, padx=0)
 
         # Uploads
         upimg = ImageTk.PhotoImage(
@@ -339,8 +339,19 @@ class App(object):
         self._print(self._lang['PROCESS_STARTED'], end='', hour=True)
         try:
             fl = open(self._lastfolder + '/README.md', 'w')
+
+            # Data variables
             project = self._loadedfile['PROJECT']
             icon = self._loadedfile['PROJECT']['ICON']
+            description = self._loadedfile['DESCRIPTION']
+            badges = self._loadedfile['BADGES']
+            badgelist = ''
+            badgelistcfg = self._loadedfile['BADGES'].keys()
+            badgelistcfg.sort()
+            for b in badgelistcfg:
+                badgelist += CONTENT_BADGE_ITEM.format(badges[b]['HREF'], badges[b]['ALT'], badges[b]['IMAGE'])
+
+            # Write elements on README
             if icon['IMAGE'] != '':
                 if self._loadedfile['PROJECT']['URL'] != '':
                     fl.write(CONTENT_HEADER_URL_IMAGE.format(project['URL'], project['URL_TITLE'], icon['ALT'],
@@ -354,8 +365,16 @@ class App(object):
                     fl.write(CONTENT_HEADER_URL_NO_IMAGE.format(project['URL'], project['URL_TITLE'], project['NAME']))
                 else:
                     fl.write(CONTENT_HEADER_NO_URL_IMAGE.format(project['NAME']))
+            if description != '':
+                fl.write(CONTENT_DESCRIPTION.format(description))
+            if badgelist != '':
+                fl.write(CONTENT_BADGES.format(badgelist))
+
+            # Process finished
             fl.close()
             self._print(self._lang['PROCESS_OK'])
+            self._startbutton.configure(state='disabled')
+            self._uploadbutton.configure(state='normal')
         except Exception as e:
             self._errorsound()
             self._print(self._lang['PROCESS_ERROR'])
