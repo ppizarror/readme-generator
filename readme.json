@@ -1,7 +1,14 @@
 {
   "PROJECT": {
     "NAME": "README.md Generator",
-    "ICON": "icon.png"
+    "ICON": {
+      "IMAGE": "icon.png",
+      "ALT": "",
+      "WIDTH": 200,
+      "HEIGHT": 200
+    },
+    "URL": "1",
+    "URL_TITLE": "1"
   },
   "AUTHOR": {
     "NAME": "Pablo Pizarro R.",

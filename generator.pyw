@@ -35,6 +35,7 @@ from tkFileDialog import askopenfilename
 
 # Library imports
 from PIL import ImageTk
+from resources.content import *
 from resources.utils import *
 from resources.vframe import VerticalScrolledFrame
 import json
@@ -43,7 +44,7 @@ import traceback
 import winsound
 
 # Constants
-VERSION = '0.2'
+VERSION = '0.4'
 
 
 # noinspection PyUnusedLocal,PyBroadException
@@ -82,7 +83,7 @@ class App(object):
             :param event: Evento
             :return: None
             """
-            if -175 < event.x < 240 and 38 < event.y < 136:
+            if 0 < event.x < 420 and 38 < event.y < 150:
                 if is_windows():
                     if -1 * (event.delta / 100) < 0:
                         move = -1
@@ -335,10 +336,26 @@ class App(object):
 
         :return:
         """
-        self._print(self._lang['PROCESS_STARTED'], end='')
+        self._print(self._lang['PROCESS_STARTED'], end='', hour=True)
         try:
             fl = open(self._lastfolder + '/README.md', 'w')
-            fl.closes()
+            project = self._loadedfile['PROJECT']
+            icon = self._loadedfile['PROJECT']['ICON']
+            if icon['IMAGE'] != '':
+                if self._loadedfile['PROJECT']['URL'] != '':
+                    fl.write(CONTENT_HEADER_URL_IMAGE.format(project['URL'], project['URL_TITLE'], icon['ALT'],
+                                                             icon['IMAGE'], project['NAME'], icon['WIDTH'],
+                                                             icon['HEIGHT']))
+                else:
+                    fl.write(CONTENT_HEADER_NO_URL_IMAGE.format(icon['ALT'], icon['IMAGE'], project['NAME'],
+                                                                icon['WIDTH'], icon['HEIGHT']))
+            else:
+                if self._loadedfile['PROJECT']['URL'] != '':
+                    fl.write(CONTENT_HEADER_URL_NO_IMAGE.format(project['URL'], project['URL_TITLE'], project['NAME']))
+                else:
+                    fl.write(CONTENT_HEADER_NO_URL_IMAGE.format(project['NAME']))
+            fl.close()
+            self._print(self._lang['PROCESS_OK'])
         except Exception as e:
             self._errorsound()
             self._print(self._lang['PROCESS_ERROR'])
@@ -388,9 +405,23 @@ class App(object):
                     print_error('ELEMENT_NOT_FOUND', c)
                     if not showerrors:
                         return False
-            for c in ['NAME', 'ICON']:
+            for c in ['NAME', 'ICON', 'URL', 'URL_TITLE']:
                 if c not in cfg['PROJECT'].keys():
                     print_error('PROJECT_ENTRY', c)
+                    if not showerrors:
+                        return False
+            for c in ['IMAGE', 'ALT', 'WIDTH', 'HEIGHT']:
+                if c not in cfg['PROJECT']['ICON'].keys():
+                    print_error('PROJECT_ICON_ENTRY', c)
+                    if not showerrors:
+                        return False
+            if cfg['PROJECT']['ICON']['IMAGE'] != '':
+                if not str(cfg['PROJECT']['ICON']['WIDTH']).isdigit():
+                    print_error('PROJECT_ICON_WIDTH', cfg['PROJECT']['ICON']['WIDTH'])
+                    if not showerrors:
+                        return False
+                if not str(cfg['PROJECT']['ICON']['HEIGHT']).isdigit():
+                    print_error('PROJECT_ICON_HEIGHT', cfg['PROJECT']['ICON']['HEIGHT'])
                     if not showerrors:
                         return False
             if cfg['PROJECT']['NAME'] == '':
@@ -430,7 +461,11 @@ class App(object):
                         return False
             self._loadedfile = cfg
             return True
-        except:
+        except Exception as e:
+            self._errorsound()
+            self._print(self._lang['PROCESS_ERROR'])
+            self._print(str(e))
+            self._print(traceback.format_exc())
             return False
 
 
