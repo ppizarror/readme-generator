@@ -39,13 +39,20 @@ from resources.content import *
 from resources.utils import *
 from resources.vframe import VerticalScrolledFrame
 from subprocess import call
+import codecs
 import json
+import sys
 import time
 import traceback
 import winsound
 
+# noinspection PyCompatibility
+reload(sys)
+# noinspection PyUnresolvedReferences
+sys.setdefaultencoding('utf8')
+
 # Constants
-VERSION = '0.7.4'
+VERSION = '0.7.5'
 
 
 # noinspection PyUnusedLocal,PyBroadException
@@ -144,9 +151,8 @@ class App(object):
         f2.pack(fill=BOTH)
 
         # Load file
-        self._startbutton = Button(f1, text=self._lang['LOAD_FILE_BUTTON'],
-                                   state='normal', relief=GROOVE,
-                                   command=self.load_file)
+        self._startbutton = Button(f1, text=self._lang['LOAD_FILE_BUTTON'], state='normal', relief=GROOVE,
+                                   command=self.load_file, cursor='hand2')
         self._startbutton.pack(side=LEFT, padx=5, anchor=W)
 
         # Label that shows loaded configuration name
@@ -192,6 +198,7 @@ class App(object):
         self._loadedfile = {}
         self._generationok = False
         self._lastloadedfile = ''
+        self._clearstatus()
 
         # Events
         self._root.bind('<MouseWheel>', _scroll_console)
@@ -202,8 +209,8 @@ class App(object):
 
         :return: None
         """
-        self._uploadbutton.configure(state='disabled')
-        self._startbutton.configure(state='disabled')
+        self._uploadbutton.configure(state='disabled', cursor='arrow')
+        self._startbutton.configure(state='disabled', cursor='arrow')
         self._mainlabelstr.set('')
         self._loadedfile = {}
         self._generationok = False
@@ -273,8 +280,8 @@ class App(object):
         self._print(self._lang['START_LOADING'].format(filename), hour=True, end='')
         if self.validate(filename):
             self._print(self._lang['LOAD_OK'])
-            self._uploadbutton.configure(state='disabled')
-            self._startbutton.configure(state='normal')
+            self._uploadbutton.configure(state='disabled', cursor='arrow')
+            self._startbutton.configure(state='normal', cursor='hand2')
             self._mainlabelstr.set(self._loadedfile['PROJECT']['NAME'])
         else:
             self._clearstatus()
@@ -354,7 +361,7 @@ class App(object):
             # Data variables
             project = self._loadedfile['PROJECT']
             icon = self._loadedfile['PROJECT']['ICON']
-            description = self._loadedfile['DESCRIPTION']
+            description = self._loadedfile['DESCRIPTION'].decode()
             badges = self._loadedfile['BADGES']
             badgelist = ''
             badgelistcfg = self._loadedfile['BADGES'].keys()
@@ -408,8 +415,8 @@ class App(object):
             fl.close()
             self.save_last_session()
             self._print(self._lang['PROCESS_OK'])
-            self._startbutton.configure(state='disabled')
-            self._uploadbutton.configure(state='normal')
+            self._startbutton.configure(state='disabled', cursor='arrow')
+            self._uploadbutton.configure(state='normal', cursor='hand2')
             self._generationok = True
         except Exception as e:
             self._errorsound()
@@ -472,7 +479,7 @@ class App(object):
 
         if not self._generationok:
             return
-        self._uploadbutton.configure(state='disabled')
+        self._uploadbutton.configure(state='disabled', cursor='arrow')
         self._root.configure(cursor='wait')
         self._print(self._lang['COMMIT_STARTED'], end='', hour=True)
         self._root.after(500, _callback)
@@ -505,7 +512,7 @@ class App(object):
             self._errorsound()
 
         try:
-            with open(configfile) as json_data:
+            with codecs.open(configfile, 'r', encoding='utf-8') as json_data:
                 cfg = json.load(json_data)
             for c in ['PROJECT', 'AUTHOR', 'DESCRIPTION', 'BADGES', 'CONTENT']:
                 if c not in cfg.keys():
