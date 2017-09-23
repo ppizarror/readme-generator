@@ -45,7 +45,7 @@ import traceback
 import winsound
 
 # Constants
-VERSION = '0.7.3'
+VERSION = '0.7.4'
 
 
 # noinspection PyUnusedLocal,PyBroadException
@@ -183,7 +183,12 @@ class App(object):
         _about()
 
         # Other variables
-        self._lastfolder = self._config['ROOT']
+        with open(self._config['LAST_SESSION_FILE']) as json_data:
+            lsession = json.load(json_data)
+        if lsession['LAST_FOLDER'] != '':
+            self._lastfolder = lsession['LAST_FOLDER']
+        else:
+            self._lastfolder = self._config['ROOT']
         self._loadedfile = {}
         self._generationok = False
         self._lastloadedfile = ''
@@ -428,7 +433,7 @@ class App(object):
         :return:
         """
         if self._config['SAVE_LAST_SESSION']:
-            with open('resources/session.json', 'w') as outfile:
+            with open(self._config['LAST_SESSION_FILE'], 'w') as outfile:
                 session = {
                     'LAST_FOLDER': self._lastfolder,
                     'LAST_LOADED_FILE': self._lastloadedfile
