@@ -64,7 +64,7 @@ README.md generator needs a configuration file of your README, just create a fil
 }
 ```
 
-In <a href="https://github.com/ppizarror/readme-generator/blob/master/readme.content.md">readme.content.md</a> you can write the main content of your README, this has to be in the same root of your <a href="https://github.com/ppizarror/readme-generator/blob/master/readme.json">readme.json</a> configuration 
+In <a href="https://github.com/ppizarror/readme-generator/blob/master/readme.content.md">readme.content.md</a> you can write the main content of your README, this has to be in the same root of your <a href="https://github.com/ppizarror/readme-generator/blob/master/readme.json">readme.json</a> configuration.
 
 <details>
 <summary>Example of this README</summary>
