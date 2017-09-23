@@ -22,7 +22,8 @@
     "PROJECT_EMPTY_NAME": "El nombre del proyecto no puede estar vacio",
     "BADGE_IMAGE_EMPTY": "La imagen del badge '{0}' no puede estar vacia",
     "CONTENT_EMPTY": "El campo CONTENT no puede estar vacio",
-    "CONTENT_FILE_NOT_EXIST": "El contenido del readme '{0}' no existe"
+    "CONTENT_FILE_NOT_EXIST": "El contenido del readme '{0}' no existe",
+    "MUST_BE_BOOL": "El valor '{0}' debe ser booleano"
   },
   "PROCESS_STARTED": "Generando README.md ... ",
   "PROCESS_OK": "[OK]",

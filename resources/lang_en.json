@@ -22,7 +22,8 @@
     "PROJECT_EMPTY_NAME": "Project name can't be empty",
     "BADGE_IMAGE_EMPTY": "Badge '{0}' image can't be empty",
     "CONTENT_EMPTY": "Readme CONTENT configuration can't be empty",
-    "CONTENT_FILE_NOT_EXIST": "Readme CONTENT file '{0}' don't exist"
+    "CONTENT_FILE_NOT_EXIST": "Readme CONTENT file '{0}' don't exist",
+    "MUST_BE_BOOL": "Value '{0}' must be a boolean"
   },
   "PROCESS_STARTED": "Generating README.md ... ",
   "PROCESS_OK": "[OK]",

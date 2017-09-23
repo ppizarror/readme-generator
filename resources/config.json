@@ -1,7 +1,7 @@
 {
   "APP": {
-    "WIDTH": 420,
-    "HEIGHT": 150,
+    "WIDTH": 500,
+    "HEIGHT": 200,
     "TITLE": "README.md generator",
     "ICON": {
       "TITLE": "resources/appicon.ico",

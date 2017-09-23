@@ -52,7 +52,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 # Constants
-VERSION = '0.7.5'
+VERSION = '0.7.6'
 
 
 # noinspection PyUnusedLocal,PyBroadException
@@ -157,7 +157,9 @@ class App(object):
 
         # Label that shows loaded configuration name
         self._mainlabelstr = StringVar()
-        Label(f1, textvariable=self._mainlabelstr, foreground='#666').pack(side=LEFT, padx=0)
+        self._mainlabel = Label(f1, textvariable=self._mainlabelstr, foreground='#555', width=35,
+                                anchor='w')
+        self._mainlabel.pack(side=LEFT, padx=3)
 
         # Uploads
         upimg = ImageTk.PhotoImage(
@@ -367,8 +369,10 @@ class App(object):
             badgelistcfg = self._loadedfile['BADGES'].keys()
             badgelistcfg.sort()
             for b in badgelistcfg:
-                if 'NEWLINE' in badges[b].keys():
+                if 'NEWLINE' in badges[b].keys() and badges[b]['NEWLINE']:
                     badgelist += '<br>'
+                elif 'SHOW' in badges[b].keys() and not badges[b]['SHOW']:
+                    pass
                 else:
                     badgelist += CONTENT_BADGE_ITEM.format(badges[b]['HREF'], badges[b]['ALT'], badges[b]['IMAGE'])
             author = self._loadedfile['AUTHOR']
@@ -569,6 +573,11 @@ class App(object):
                             print_error('BADGE_IMAGE_EMPTY', k)
                             if not showerrors:
                                 return False
+                else:
+                    if not isinstance(badges[k]['NEWLINE'], bool):
+                        print_error('MUST_BE_BOOL', 'NEWLINE')
+                        if not showerrors:
+                            return False
                 if not k.isdigit():
                     print_error('BADGE_TAG_NUMERIC', k)
                     if not showerrors:
