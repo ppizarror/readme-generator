@@ -1,7 +1,10 @@
 <h1 align="center">
-  <img alt="" src="icon.png" width="200px" height="200px" />
+  <a href="http://ppizarror.com/readme-generator/" title="README Generator">
+    <img alt="" src="icon.png" width="200px" height="200px" />
+  </a>
   <br /><br />
-  README.md Generator</h1>
+  README.md Generator
+</h1>
 <p align="center">Generate a README.md file from a configuration file</p>
 <div align="center">
   <a href="http://ppizarror.com">
@@ -79,8 +82,8 @@ In <a href="https://github.com/ppizarror/readme-generator/blob/master/readme.con
       "WIDTH": 200,
       "HEIGHT": 200
     },
-    "URL": "",
-    "URL_TITLE": ""
+    "URL": "http://ppizarror.com/readme-generator/",
+    "URL_TITLE": "README Generator"
   },
   "AUTHOR": {
     "NAME": "Pablo Pizarro R.",
