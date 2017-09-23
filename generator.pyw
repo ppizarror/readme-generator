@@ -44,7 +44,7 @@ import traceback
 import winsound
 
 # Constants
-VERSION = '0.5'
+VERSION = '0.5.1'
 
 
 # noinspection PyUnusedLocal,PyBroadException

@@ -28,15 +28,13 @@ CONTENT_HEADER_URL_IMAGE = """<h1 align="center">
     <img alt="{2}" src="{3}" width="{5}px" height="{6}px" />
   </a>
   <br /><br />
-  {4}
-</h1>
+  {4}</h1>
 """
 
 CONTENT_HEADER_NO_URL_IMAGE = """<h1 align="center">
   <img alt="{0}" src="{1}" width="{3}px" height="{4}px" />
   <br /><br />
-  {2}
-</h1>
+  {2}</h1>
 """
 
 CONTENT_HEADER_URL_NO_IMAGE = """<h1 align="center">
@@ -47,13 +45,10 @@ CONTENT_HEADER_URL_NO_IMAGE = """<h1 align="center">
 """
 
 CONTENT_HEADER_NO_URL_NO_IMAGE = """<h1 align="center">
-  {0}
-</h1>
+  {0}</h1>
 """
 
-CONTENT_DESCRIPTION = """<p align="center">
-  {0}
-</p>
+CONTENT_DESCRIPTION = """<p align="center">{0}</p>
 """
 
 CONTENT_BADGES = """<div align="center">
