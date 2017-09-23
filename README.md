@@ -114,7 +114,7 @@ In <a href="https://github.com/ppizarror/readme-generator/blob/master/readme.con
   <img src="http://ppizarror.com/resources/images/readme-generator/app.PNG" width="40%" />
 </p>
 
-Just run this Python app, load your file and click on *Generate README.md* button to create your new README file. You can also push your new readme to your github account by clicking on the icon next to the button.
+Just run this Python app, load your file and click on ```Generate README.md``` button to create your new README file. You can also push your new readme to your github account by clicking on the icon next to the button.
 
 ## License
 This project is under MIT License [https://opensource.org/licenses/MIT]
