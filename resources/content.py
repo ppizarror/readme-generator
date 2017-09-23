@@ -2,7 +2,6 @@
 """
 README GENERATOR
 Readme content variables
-
 Autor: Pablo Pizarro R. @ ppizarror.com
 Licencia:
     The MIT License (MIT)

@@ -39,6 +39,9 @@ README.md generator needs a configuration file of your README, just create a fil
       "ALT": ""
     },
     "2": {
+      "NEWLINE": true
+    },
+    "3": {
       "IMAGE": "",
       "HREF": "",
       "ALT": ""

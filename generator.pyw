@@ -45,7 +45,7 @@ import traceback
 import winsound
 
 # Constants
-VERSION = '0.7.1'
+VERSION = '0.7.3'
 
 
 # noinspection PyUnusedLocal,PyBroadException
@@ -203,7 +203,6 @@ class App(object):
         self._loadedfile = {}
         self._generationok = False
         self._lastloadedfile = ''
-        self._lastfolder = self._config['ROOT']
 
     def _clearconsole(self, scrolldir=1):
         """
@@ -356,7 +355,10 @@ class App(object):
             badgelistcfg = self._loadedfile['BADGES'].keys()
             badgelistcfg.sort()
             for b in badgelistcfg:
-                badgelist += CONTENT_BADGE_ITEM.format(badges[b]['HREF'], badges[b]['ALT'], badges[b]['IMAGE'])
+                if 'NEWLINE' in badges[b].keys():
+                    badgelist += '<br>'
+                else:
+                    badgelist += CONTENT_BADGE_ITEM.format(badges[b]['HREF'], badges[b]['ALT'], badges[b]['IMAGE'])
             author = self._loadedfile['AUTHOR']
             author_section = author['SECTION']
             contentreadme = open(self._lastfolder + '/' + self._loadedfile['CONTENT'])
@@ -399,6 +401,7 @@ class App(object):
             # Process finished
             contentreadme.close()
             fl.close()
+            self.save_last_session()
             self._print(self._lang['PROCESS_OK'])
             self._startbutton.configure(state='disabled')
             self._uploadbutton.configure(state='normal')
@@ -417,6 +420,20 @@ class App(object):
         :return: None
         """
         self._root.mainloop()
+
+    def save_last_session(self):
+        """
+        Save last opened folder to file.
+
+        :return:
+        """
+        if self._config['SAVE_LAST_SESSION']:
+            with open('resources/session.json', 'w') as outfile:
+                session = {
+                    'LAST_FOLDER': self._lastfolder,
+                    'LAST_LOADED_FILE': self._lastloadedfile
+                }
+                json.dump(session, outfile)
 
     def upload(self):
         """
@@ -530,15 +547,16 @@ class App(object):
                         return False
             badges = cfg['BADGES']
             for k in badges.keys():
-                for c in ['IMAGE', 'HREF', 'ALT']:
-                    if c not in badges[k]:
-                        print_error('BADGE_ENTRY', [c, k])
-                        if not showerrors:
-                            return False
-                    if badges[k]['IMAGE'] == '':
-                        print_error('BADGE_IMAGE_EMPTY', k)
-                        if not showerrors:
-                            return False
+                if 'NEWLINE' not in badges[k].keys():
+                    for c in ['IMAGE', 'HREF', 'ALT']:
+                        if c not in badges[k].keys():
+                            print_error('BADGE_ENTRY', [c, k])
+                            if not showerrors:
+                                return False
+                        if badges[k]['IMAGE'] == '':
+                            print_error('BADGE_IMAGE_EMPTY', k)
+                            if not showerrors:
+                                return False
                 if not k.isdigit():
                     print_error('BADGE_TAG_NUMERIC', k)
                     if not showerrors:

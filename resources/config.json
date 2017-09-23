@@ -11,6 +11,7 @@
   },
   "LANG": "resources/lang_en.json",
   "REMEMBER_LAST_FOLDER": true,
+  "SAVE_LAST_SESSION": true,
   "CONSOLE": {
     "LIMIT_MESSAGES_CONSOLE": 1000,
     "MSG_FORMAT": "[{0}] {1}"
