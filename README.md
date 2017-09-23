@@ -3,10 +3,10 @@
     <img alt="" src="icon.png" width="200px" height="200px" />
   </a>
   <br /><br />
-  README.md Generator</h1>
+  README.md Generator
+</h1>
 <p align="center">Generate a README.md file from a configuration file</p>
 <div align="center">
-  
   <a href="http://ppizarror.com">
     <img alt="@ppizarror" src="http://ppizarror.com/badges/author.svg" />
   </a>
@@ -14,7 +14,6 @@
   <a href="https://opensource.org/licenses/MIT/">
     <img alt="MIT License" src="http://ppizarror.com/badges/licensemit.svg" />
   </a>
-
 </div>
 <br />
 
@@ -59,6 +58,9 @@ README.md generator needs a configuration file of your README, just create a fil
       "ALT": ""
     },
     "2": {
+      "NEWLINE": true
+    },
+    "3": {
       "IMAGE": "",
       "HREF": "",
       "ALT": ""
@@ -120,5 +122,6 @@ Just run this Python app, load your file and click on *Generate README.md* butto
 
 ## License
 This project is under MIT License [https://opensource.org/licenses/MIT]
+
 ## Author
 <a href="http://ppizarror.com" title="ppizarror">Pablo Pizarro R.</a> | 2017
