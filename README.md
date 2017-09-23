@@ -3,8 +3,7 @@
     <img alt="" src="icon.png" width="200px" height="200px" />
   </a>
   <br /><br />
-  README.md Generator
-</h1>
+  README.md Generator</h1>
 <p align="center">Generate a README.md file from a configuration file</p>
 <div align="center">
   <a href="http://ppizarror.com">
