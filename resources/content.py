@@ -47,7 +47,7 @@ CONTENT_HEADER_NO_URL_NO_IMAGE = """<h1 align="center">
   {0}</h1>
 """
 
-CONTENT_DESCRIPTION = """<div align="center">{0}</div><br />\n"""
+CONTENT_DESCRIPTION = """<p align="center">{0}</p>\n"""
 
 CONTENT_BADGES = """<div align="center">{0}</div><br />\n"""
 
