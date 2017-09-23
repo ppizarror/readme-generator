@@ -38,13 +38,14 @@ from PIL import ImageTk
 from resources.content import *
 from resources.utils import *
 from resources.vframe import VerticalScrolledFrame
+from subprocess import call
 import json
 import time
 import traceback
 import winsound
 
 # Constants
-VERSION = '0.6.0'
+VERSION = '0.7.0'
 
 
 # noinspection PyUnusedLocal,PyBroadException
@@ -156,7 +157,7 @@ class App(object):
         upimg = ImageTk.PhotoImage(
             file=self._config['APP']['ICON']['UPLOADBUTTON'])
         self._uploadbutton = Button(f1, image=upimg, relief=GROOVE, height=20,
-                                    width=20, border=0, state='disabled')
+                                    width=20, border=0, state='disabled', command=self.upload)
         self._uploadbutton.image = upimg
         self._uploadbutton.pack(side=RIGHT, padx=2, anchor=E)
 
@@ -184,6 +185,8 @@ class App(object):
         # Other variables
         self._lastfolder = self._config['ROOT']
         self._loadedfile = {}
+        self._generationok = False
+        self._lastloadedfile = ''
 
         # Events
         self._root.bind('<MouseWheel>', _scroll_console)
@@ -198,6 +201,9 @@ class App(object):
         self._startbutton.configure(state='disabled')
         self._mainlabelstr.set('')
         self._loadedfile = {}
+        self._generationok = False
+        self._lastloadedfile = ''
+        self._lastfolder = self._config['ROOT']
 
     def _clearconsole(self, scrolldir=1):
         """
@@ -257,6 +263,7 @@ class App(object):
         # Store last folder
         filepath = os.path.split(filename)
         self._lastfolder = filepath[0]
+        self._lastloadedfile = filepath[1]
 
         # Validate file
         self._print(self._lang['START_LOADING'].format(filename), hour=True, end='')
@@ -284,8 +291,8 @@ class App(object):
             """
             Generates string with hour of message.
 
-            :param c: Lista
-            :return: Texto
+            :param c: List
+            :return: Text
             """
             text = ''
             for i in c:
@@ -352,7 +359,7 @@ class App(object):
                 badgelist += CONTENT_BADGE_ITEM.format(badges[b]['HREF'], badges[b]['ALT'], badges[b]['IMAGE'])
             author = self._loadedfile['AUTHOR']
             author_section = author['SECTION']
-            contentreadme = open(self._loadedfile['CONTENT'])
+            contentreadme = open(self._lastfolder + '/' + self._loadedfile['CONTENT'])
 
             # Write elements on README
             if icon['IMAGE'] != '':
@@ -395,11 +402,13 @@ class App(object):
             self._print(self._lang['PROCESS_OK'])
             self._startbutton.configure(state='disabled')
             self._uploadbutton.configure(state='normal')
+            self._generationok = True
         except Exception as e:
             self._errorsound()
             self._print(self._lang['PROCESS_ERROR'])
             self._print(str(e))
             self._print(traceback.format_exc())
+            self._generationok = False
 
     def run(self):
         """
@@ -408,6 +417,43 @@ class App(object):
         :return: None
         """
         self._root.mainloop()
+
+    def upload(self):
+        """
+        Upload README to github.
+
+        :return:
+        """
+
+        def _callback():
+            try:
+                t = time.time()
+                with open(os.devnull, 'w') as FNULL:
+                    with Cd(self._lastfolder):
+                        call(['git', 'add', 'README.md'], stdout=FNULL, creationflags=CREATE_NO_WINDOW)
+                        if self._config['COMMIT_ADD_ALL_FILES']:
+                            call(['git', 'add', self._loadedfile['CONTENT']], stdout=FNULL,
+                                 creationflags=CREATE_NO_WINDOW)
+                            call(['git', 'add', self._lastloadedfile], stdout=FNULL,
+                                 creationflags=CREATE_NO_WINDOW)
+                        call(['git', 'commit', '-m', self._lang['COMMIT_UPDATE_README']], stdout=FNULL,
+                             creationflags=CREATE_NO_WINDOW)
+                        call(['git', 'push'], stdout=FNULL, stderr=FNULL, creationflags=CREATE_NO_WINDOW)
+                self._print(self._lang['COMMIT_TIME'].format((time.time() - t)))
+                self._root.configure(cursor='arrow')
+            except Exception as e:
+                self._root.configure(cursor='arrow')
+                self._errorsound()
+                self._print(self._lang['PROCESS_ERROR'])
+                self._print(str(e))
+                self._print(traceback.format_exc())
+
+        if not self._generationok:
+            return
+        self._uploadbutton.configure(state='disabled')
+        self._root.configure(cursor='wait')
+        self._print(self._lang['COMMIT_STARTED'], end='', hour=True)
+        self._root.after(500, _callback)
 
     def validate(self, configfile, showerrors=False):
         """

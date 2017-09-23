@@ -14,5 +14,6 @@
   "CONSOLE": {
     "LIMIT_MESSAGES_CONSOLE": 1000,
     "MSG_FORMAT": "[{0}] {1}"
-  }
+  },
+  "COMMIT_ADD_ALL_FILES": true
 }

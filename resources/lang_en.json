@@ -29,5 +29,8 @@
   "PROCESS_OK": "[OK]",
   "PROCESS_ERROR": "[ERROR]",
   "LOAD_CANCELLED": "Process cancelled",
-  "LOAD_WAITING_USER": "Waiting for user input ... "
+  "LOAD_WAITING_USER": "Waiting for user input ... ",
+  "COMMIT_UPDATE_README": "Update README",
+  "COMMIT_STARTED": "Uploading to Github ... ",
+  "COMMIT_TIME": "OK [t {0:.3g}]"
 }
