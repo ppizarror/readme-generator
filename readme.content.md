@@ -100,7 +100,7 @@ In <a href="https://github.com/ppizarror/readme-generator/blob/master/readme.con
 
 ### Run README Generator
 <p align="center">
-  <a href="#">
+  <a href="">
     <img src="http://ppizarror.com/resources/images/readme-generator/app.PNG" width="40%" />
   </a>
 </p>
