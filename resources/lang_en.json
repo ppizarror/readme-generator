@@ -9,7 +9,6 @@
   "LOAD_FAILED": "[ERROR] Configuration file is not valid",
   "LOAD_OK": "[OK] Configuration file is valid",
   "FILE_ERRORS": {
-    "NAME_EMPTY": "Project name can't be empty",
     "ELEMENT_NOT_FOUND": "'{0}' is not defined",
     "PROJECT_ENTRY": "'{0}' in PROJECT is not defined",
     "AUTHOR_ENTRY": "'{0}' in AUTHOR is not defined",

@@ -9,7 +9,7 @@
     },
     "SOUNDS": true
   },
-  "LANG": "resources/lang_en.json",
+  "LANG": "resources/lang_es.json",
   "REMEMBER_LAST_FOLDER": true,
   "CONSOLE": {
     "LIMIT_MESSAGES_CONSOLE": 1000,
