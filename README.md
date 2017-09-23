@@ -4,7 +4,7 @@
   </a>
   <br /><br />
   README.md Generator</h1>
-<div align="center">Generate a README.md file from a configuration file</div><br />
+<div align="center" style="margin-bottom:15px">Generate a README.md file from a configuration file</div>
 <div align="center"><a href="http://ppizarror.com"><img alt="@ppizarror" src="http://ppizarror.com/badges/author.svg" /></a>
 <a href="https://opensource.org/licenses/MIT/"><img alt="MIT License" src="http://ppizarror.com/badges/licensemit.svg" /></a>
 </div><br />
