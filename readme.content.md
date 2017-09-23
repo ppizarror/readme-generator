@@ -1,7 +1,7 @@
 ## Usage
 
 ### Create README configuration file
-README.md generator needs a configuration file of your README, just create a file called *readme.json* in the root of your repository:
+README.md generator needs a configuration file of your README, just create a file called <a href="https://github.com/ppizarror/readme-generator/blob/master/readme.json">readme.json</a> in the root of your repository:
 
 ```json
 {
@@ -42,12 +42,13 @@ README.md generator needs a configuration file of your README, just create a fil
       "IMAGE": "",
       "HREF": "",
       "ALT": ""
-    },
-    ...
+    }
   },
   "CONTENT": "readme.content.md"
 }
 ```
+
+In <a href="https://github.com/ppizarror/readme-generator/blob/master/readme.content.md">readme.content.md</a> you can write the main content of your README, this has to be in the same root of your <a href="https://github.com/ppizarror/readme-generator/blob/master/readme.json">readme.json</a> configuration.
 
 <details>
 <summary>Example of this README</summary>
@@ -62,8 +63,8 @@ README.md generator needs a configuration file of your README, just create a fil
       "WIDTH": 200,
       "HEIGHT": 200
     },
-    "URL": "",
-    "URL_TITLE": ""
+    "URL": "http://ppizarror.com/readme-generator/",
+    "URL_TITLE": "README Generator"
   },
   "AUTHOR": {
     "NAME": "Pablo Pizarro R.",
@@ -92,7 +93,10 @@ README.md generator needs a configuration file of your README, just create a fil
 }
 ```
 
-</details>
+</details><br>
+
+### Run README Generator
+Just run this Python app, load your file and click on *Generate README.md* button to create your new README file. You can also push your new readme to your github account by clicking on the icon next to the button.
 
 ## License
 This project is under MIT License [https://opensource.org/licenses/MIT]
