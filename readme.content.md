@@ -90,6 +90,11 @@ In <a href="https://github.com/ppizarror/readme-generator/blob/master/readme.con
       "IMAGE": "http://ppizarror.com/badges/licensemit.svg",
       "HREF": "https://opensource.org/licenses/MIT/",
       "ALT": "MIT License"
+    },
+    "2": {
+      "IMAGE": "http://ppizarror.com/badges/python27.svg",
+      "HREF": "https://www.python.org/downloads/",
+      "ALT": "Python 2.7"
     }
   },
   "CONTENT": "readme.content.md"
