@@ -15,3 +15,6 @@
 
 </div>
 <br />
+
+## Author
+<a href="http://ppizarror.com" title="ppizarror">Pablo Pizarro R.</a> | 2017

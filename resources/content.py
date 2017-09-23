@@ -62,3 +62,23 @@ CONTENT_BADGE_ITEM = """
     <img alt="{1}" src="{2}" />
   </a>
 """
+
+CONTENT_AUTHOR_SECTION_URL_DATE = """
+## {0}
+<a href="{1}" title="{2}">{3}</a> | {4}
+"""
+
+CONTENT_AUTHOR_SECTION_NO_URL_DATE = """
+## {0}
+{1} | {2}
+"""
+
+CONTENT_AUTHOR_SECTION_URL_NO_DATE = """
+## {0}
+<a href="{1}" title="{2}">{3}</a>
+"""
+
+CONTENT_AUTHOR_SECTION_NO_URL_NO_DATE = """
+## {0}
+{1}
+"""

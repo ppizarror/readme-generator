@@ -14,7 +14,11 @@
     "NAME": "Pablo Pizarro R.",
     "URL": "http://ppizarror.com",
     "ALT": "ppizarror",
-    "DATE": "2017"
+    "DATE": "2017",
+    "SECTION": {
+      "TITLE": "Author",
+      "SHOW": true
+    }
   },
   "DESCRIPTION": "Generate a README.md file from a configuration file",
   "BADGES": {

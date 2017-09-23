@@ -44,7 +44,7 @@ import traceback
 import winsound
 
 # Constants
-VERSION = '0.5.1'
+VERSION = '0.5.5'
 
 
 # noinspection PyUnusedLocal,PyBroadException
@@ -350,6 +350,8 @@ class App(object):
             badgelistcfg.sort()
             for b in badgelistcfg:
                 badgelist += CONTENT_BADGE_ITEM.format(badges[b]['HREF'], badges[b]['ALT'], badges[b]['IMAGE'])
+            author = self._loadedfile['AUTHOR']
+            author_section = author['SECTION']
 
             # Write elements on README
             if icon['IMAGE'] != '':
@@ -369,6 +371,19 @@ class App(object):
                 fl.write(CONTENT_DESCRIPTION.format(description))
             if badgelist != '':
                 fl.write(CONTENT_BADGES.format(badgelist))
+            if author_section['SHOW']:
+                if author['DATE'] != '':
+                    if author['URL'] != '':
+                        fl.write(CONTENT_AUTHOR_SECTION_URL_DATE.format(author_section['TITLE'], author['URL'],
+                                                                        author['ALT'], author['NAME'], author['DATE']))
+                    else:
+                        fl.write(CONTENT_AUTHOR_SECTION_URL_DATE.format(author['NAME'], author['DATE']))
+                else:
+                    if author['URL'] != '':
+                        fl.write(CONTENT_AUTHOR_SECTION_URL_NO_DATE.format(author_section['TITLE'], author['URL'],
+                                                                           author['ALT'], author['NAME']))
+                    else:
+                        fl.write(CONTENT_AUTHOR_SECTION_NO_URL_NO_DATE.format(author['NAME']))
 
             # Process finished
             fl.close()
@@ -447,9 +462,19 @@ class App(object):
                 print_error('PROJECT_EMPTY_NAME')
                 if not showerrors:
                     return False
-            for c in ['NAME', 'URL', 'ALT', 'DATE']:
+            for c in ['NAME', 'URL', 'ALT', 'DATE', 'SECTION']:
                 if c not in cfg['AUTHOR'].keys():
                     print_error('AUTHOR_ENTRY', c)
+                    if not showerrors:
+                        return False
+            for c in ['TITLE', 'SHOW']:
+                if c not in cfg['AUTHOR']['SECTION'].keys():
+                    print_error('AUTHOR_SECTION_ENTRY', c)
+                    if not showerrors:
+                        return False
+            if cfg['AUTHOR']['SECTION']['SHOW']:
+                if cfg['AUTHOR']['SECTION']['TITLE'] == '':
+                    print_error('AUTHOR_SECTION_EMPTY_IF_ENABLED')
                     if not showerrors:
                         return False
             badges = cfg['BADGES']
