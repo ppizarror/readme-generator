@@ -1,0 +1,18 @@
+{
+  "APP": {
+    "WIDTH": 420,
+    "HEIGHT": 150,
+    "TITLE": "README.md generator",
+    "ICON": {
+      "TITLE": "resources/appicon.ico",
+      "UPLOADBUTTON": "resources/upload2.png"
+    },
+    "SOUNDS": true
+  },
+  "LANG": "resources/lang_en.json",
+  "REMEMBER_LAST_FOLDER": true,
+  "CONSOLE": {
+    "LIMIT_MESSAGES_CONSOLE": 1000,
+    "MSG_FORMAT": "[{0}] {1}"
+  }
+}

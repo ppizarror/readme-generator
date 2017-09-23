@@ -1,0 +1,26 @@
+{
+  "PROJECT": {
+    "NAME": "README.md Generator",
+    "ICON": "icon.png"
+  },
+  "AUTHOR": {
+    "NAME": "Pablo Pizarro R.",
+    "URL": "http://ppizarror.com",
+    "ALT": "ppizarror",
+    "DATE": "2017"
+  },
+  "DESCRIPTION": "Generate a README.md file from a configuration file",
+  "BADGES": {
+    "0": {
+      "IMAGE": "http://ppizarror.com/badges/author.svg",
+      "HREF": "http://ppizarror.com",
+      "ALT": "@ppizarror"
+    },
+    "1": {
+      "IMAGE": "http://ppizarror.com/badges/licensemit.svg",
+      "HREF": "https://opensource.org/licenses/MIT/",
+      "ALT": "MIT License"
+    }
+  },
+  "CONTENT": "readme.content.md"
+}

@@ -1,0 +1,28 @@
+{
+  "LOAD_FILE_BUTTON": "Load file",
+  "LOAD_FILE_PICKWINDOW_TITLE": "Load a configuration file to generate README",
+  "LOAD_FILE_JSON": "JSON file",
+  "START_PROCESS": "Generate README.md",
+  "ABOUT_APPTITLE": "README GENERATOR v{0}",
+  "ABOUT_AUTHOR": "Author: Pablo Pizarro R. @ ppizarror",
+  "START_LOADING": "Loading configuration file '{0}' ... ",
+  "LOAD_FAILED": "[ERROR] Configuration file is not valid",
+  "LOAD_OK": "[OK] Configuration file is valid",
+  "FILE_ERRORS": {
+    "NAME_EMPTY": "Project name can't be empty",
+    "ELEMENT_NOT_FOUND": "'{0}' is not defined",
+    "PROJECT_ENTRY": "'{0}' in PROJECT is not defined",
+    "AUTHOR_ENTRY": "'{0}' in AUTHOR is not defined",
+    "BADGE_ENTRY": "'{0}' in BADGE '{1}' is not defined",
+    "BADGE_TAG_NUMERIC": "Badge tag '{0}' must be integer (0+)",
+    "PROJECT_EMPTY_NAME": "Project name can't be empty",
+    "BADGE_IMAGE_EMPTY": "Badge '{0}' image can't be empty",
+    "CONTENT_EMPTY": "Readme CONTENT configuration can't be empty",
+    "CONTENT_FILE_NOT_EXIST": "Readme CONTENT file '{0}' don't exist"
+  },
+  "PROCESS_STARTED": "Generating README.md ... ",
+  "PROCESS_OK": "[OK]",
+  "PROCESS_ERROR": "[ERROR]",
+  "LOAD_CANCELLED": "Process cancelled",
+  "LOAD_WAITING_USER": "Waiting for user input ... "
+}
