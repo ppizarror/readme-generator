@@ -367,7 +367,11 @@ class App(object):
             badges = self._loadedfile['BADGES']
             badgelist = ''
             badgelistcfg = self._loadedfile['BADGES'].keys()
+            for j in range(len(badgelistcfg)):
+                badgelistcfg[j] = int(badgelistcfg[j])
             badgelistcfg.sort()
+            for j in range(len(badgelistcfg)):
+                badgelistcfg[j] = str(badgelistcfg[j])
             for b in badgelistcfg:
                 if 'NEWLINE' in badges[b].keys() and badges[b]['NEWLINE']:
                     badgelist += '<br>'
