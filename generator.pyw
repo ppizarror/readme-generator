@@ -44,7 +44,7 @@ import traceback
 import winsound
 
 # Constants
-VERSION = '0.5.5'
+VERSION = '0.5.7'
 
 
 # noinspection PyUnusedLocal,PyBroadException
@@ -352,6 +352,7 @@ class App(object):
                 badgelist += CONTENT_BADGE_ITEM.format(badges[b]['HREF'], badges[b]['ALT'], badges[b]['IMAGE'])
             author = self._loadedfile['AUTHOR']
             author_section = author['SECTION']
+            contentreadme = open(self._loadedfile['CONTENT'])
 
             # Write elements on README
             if icon['IMAGE'] != '':
@@ -371,6 +372,9 @@ class App(object):
                 fl.write(CONTENT_DESCRIPTION.format(description))
             if badgelist != '':
                 fl.write(CONTENT_BADGES.format(badgelist))
+            fl.write('\n')
+            for line in contentreadme:
+                fl.write(line)
             if author_section['SHOW']:
                 if author['DATE'] != '':
                     if author['URL'] != '':
@@ -386,6 +390,7 @@ class App(object):
                         fl.write(CONTENT_AUTHOR_SECTION_NO_URL_NO_DATE.format(author['NAME']))
 
             # Process finished
+            contentreadme.close()
             fl.close()
             self._print(self._lang['PROCESS_OK'])
             self._startbutton.configure(state='disabled')

@@ -51,9 +51,7 @@ CONTENT_HEADER_NO_URL_NO_IMAGE = """<h1 align="center">
 CONTENT_DESCRIPTION = """<p align="center">{0}</p>
 """
 
-CONTENT_BADGES = """<div align="center">
-  {0}
-</div>
+CONTENT_BADGES = """<div align="center">{0}</div>
 <br />
 """
 
@@ -63,22 +61,22 @@ CONTENT_BADGE_ITEM = """
   </a>
 """
 
-CONTENT_AUTHOR_SECTION_URL_DATE = """
+CONTENT_AUTHOR_SECTION_URL_DATE = """\n
 ## {0}
 <a href="{1}" title="{2}">{3}</a> | {4}
 """
 
-CONTENT_AUTHOR_SECTION_NO_URL_DATE = """
+CONTENT_AUTHOR_SECTION_NO_URL_DATE = """\n
 ## {0}
 {1} | {2}
 """
 
-CONTENT_AUTHOR_SECTION_URL_NO_DATE = """
+CONTENT_AUTHOR_SECTION_URL_NO_DATE = """\n
 ## {0}
 <a href="{1}" title="{2}">{3}</a>
 """
 
-CONTENT_AUTHOR_SECTION_NO_URL_NO_DATE = """
+CONTENT_AUTHOR_SECTION_NO_URL_NO_DATE = """\n
 ## {0}
 {1}
 """
