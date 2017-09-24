@@ -52,7 +52,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 # Constants
-VERSION = '0.7.6'
+VERSION = '0.8.0'
 
 
 # noinspection PyUnusedLocal,PyBroadException
@@ -151,9 +151,9 @@ class App(object):
         f2.pack(fill=BOTH)
 
         # Load file
-        self._startbutton = Button(f1, text=self._lang['LOAD_FILE_BUTTON'], state='normal', relief=GROOVE,
-                                   command=self.load_file, cursor='hand2')
-        self._startbutton.pack(side=LEFT, padx=5, anchor=W)
+        self._loadbutton = Button(f1, text=self._lang['LOAD_FILE_BUTTON'], state='normal', relief=GROOVE,
+                                  command=self.load_file, cursor='hand2')
+        self._loadbutton.pack(side=LEFT, padx=5, anchor=W)
 
         # Label that shows loaded configuration name
         self._mainlabelstr = StringVar()
@@ -285,6 +285,8 @@ class App(object):
             self._uploadbutton.configure(state='disabled', cursor='arrow')
             self._startbutton.configure(state='normal', cursor='hand2')
             self._mainlabelstr.set(self._loadedfile['PROJECT']['NAME'])
+            if self._config['AUTO_START']:
+                self._root.after(50, self.start_process)
         else:
             self._clearstatus()
             self._print(self._lang['LOAD_FAILED'].format(filename))
@@ -426,6 +428,10 @@ class App(object):
             self._startbutton.configure(state='disabled', cursor='arrow')
             self._uploadbutton.configure(state='normal', cursor='hand2')
             self._generationok = True
+
+            # If auto upload
+            if self._config['AUTO_UPLOAD']:
+                self._root.after(50, self.upload)
         except Exception as e:
             self._errorsound()
             self._print(self._lang['PROCESS_ERROR'])
@@ -478,6 +484,7 @@ class App(object):
                         call(['git', 'push'], stdout=FNULL, stderr=FNULL, creationflags=CREATE_NO_WINDOW)
                 self._print(self._lang['COMMIT_TIME'].format((time.time() - t)))
                 self._root.configure(cursor='arrow')
+                self._loadbutton.configure(state='normal', cursor='hand2')
             except Exception as e:
                 self._root.configure(cursor='arrow')
                 self._errorsound()
@@ -487,8 +494,9 @@ class App(object):
 
         if not self._generationok:
             return
-        self._uploadbutton.configure(state='disabled', cursor='arrow')
         self._root.configure(cursor='wait')
+        self._uploadbutton.configure(state='disabled', cursor='arrow')
+        self._loadbutton.configure(state='disabled', cursor='arrow')
         self._print(self._lang['COMMIT_STARTED'], end='', hour=True)
         self._root.after(500, _callback)
 
