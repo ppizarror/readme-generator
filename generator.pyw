@@ -58,7 +58,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 # Constants
-VERSION = '0.8.1'
+VERSION = '0.8.2'
 
 
 # noinspection PyUnusedLocal,PyBroadException
