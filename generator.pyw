@@ -44,8 +44,14 @@ import json
 import sys
 import time
 import traceback
-import winsound
 
+# noinspection PyBroadException
+try:
+    import winsound
+
+    WSOUND_MODULE = True
+except:
+    WSOUND_MODULE = False
 # noinspection PyCompatibility
 reload(sys)
 # noinspection PyUnresolvedReferences
@@ -245,7 +251,7 @@ class App(object):
 
         :return: None
         """
-        if self._config['APP']['SOUNDS']:
+        if self._config['APP']['SOUNDS'] and WSOUND_MODULE:
             winsound.MessageBeep(1)
 
     def load_file(self):
