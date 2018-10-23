@@ -7,12 +7,12 @@
       "WIDTH": 200,
       "HEIGHT": 200
     },
-    "URL": "http://ppizarror.com/readme-generator/",
+    "URL": "https://ppizarror.com/readme-generator/",
     "URL_TITLE": "README.md Generator"
   },
   "AUTHOR": {
     "NAME": "Pablo Pizarro R.",
-    "URL": "http://ppizarror.com",
+    "URL": "https://ppizarror.com",
     "ALT": "ppizarror",
     "DATE": "2017",
     "SECTION": {
@@ -23,17 +23,17 @@
   "DESCRIPTION": "Generate a README.md file from a configuration file",
   "BADGES": {
     "0": {
-      "IMAGE": "http://ppizarror.com/badges/author.svg",
-      "HREF": "http://ppizarror.com",
+      "IMAGE": "https://ppizarror.com/badges/author.svg",
+      "HREF": "https://ppizarror.com",
       "ALT": "@ppizarror"
     },
     "1": {
-      "IMAGE": "http://ppizarror.com/badges/licensemit.svg",
+      "IMAGE": "https://ppizarror.com/badges/licensemit.svg",
       "HREF": "https://opensource.org/licenses/MIT/",
       "ALT": "MIT License"
     },
     "2": {
-      "IMAGE": "http://ppizarror.com/badges/python27.svg",
+      "IMAGE": "https://ppizarror.com/badges/python27.svg",
       "HREF": "https://www.python.org/downloads/",
       "ALT": "Python 2.7"
     }
