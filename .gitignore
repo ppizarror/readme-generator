@@ -3,3 +3,6 @@
 
 # Pycharm folder
 .idea/
+
+# Windows scripts
+*.bat
