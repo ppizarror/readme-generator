@@ -112,7 +112,7 @@ In <a href="https://github.com/ppizarror/readme-generator/blob/master/readme.con
 }
 ```
 
-</details><br>
+</details>
 
 ### Run README Generator
 
@@ -126,6 +126,6 @@ Just run this Python app, load your file and click on ```Generate README.md``` b
 
 This project is under MIT License [https://opensource.org/licenses/MIT]
 
-
 ## Author
-<a href="https://ppizarror.com" title="ppizarror">Pablo Pizarro R.</a> | 2017
+
+[Pablo Pizarro R.](https://ppizarror.com) | 2017
